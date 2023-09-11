@@ -48,21 +48,21 @@ class ElectionsFragment: Fragment() {
 
         binding.upcomingElectionsRV.adapter = adapter
 
-        electionsViewModel.navigateToVoterInfoFragment.observe(viewLifecycleOwner, Observer { election ->
+        electionsViewModel.navigateToVoterInfoFragment.observe(viewLifecycleOwner) { election ->
             election?.let {
-
                 this.findNavController().navigate(
                     ElectionsFragmentDirections
-                        .actionElectionsFragmentToVoterInfoFragment(it.id, it.division))
+                        .actionElectionsFragmentToVoterInfoFragment(it.id, it.division)
+                )
                 electionsViewModel.onVoterInfoFragmentNavigated()
             }
-        })
+        }
 
-        electionsViewModel.elections.observe(viewLifecycleOwner, Observer {
+        electionsViewModel.elections.observe(viewLifecycleOwner) {
             it?.let {
                 adapter.submitList(it)
             }
-        })
+        }
         // TODO: Add ViewModel values and create ViewModel
 
         // TODO: Add binding values
