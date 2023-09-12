@@ -40,38 +40,27 @@ class ElectionsFragment: Fragment() {
 
         binding.electionsViewModel = electionsViewModel
 
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         val adapter = ElectionListAdapter(ElectionListener { election ->
-            electionsViewModel.onElectionClicked(election)
+            electionsViewModel.onUpcomingClicked(election)
         })
 
         binding.upcomingElectionsRV.adapter = adapter
-
-        electionsViewModel.navigateToVoterInfoFragment.observe(viewLifecycleOwner) { election ->
-            election?.let {
-                this.findNavController().navigate(
-                    ElectionsFragmentDirections
-                        .actionElectionsFragmentToVoterInfoFragment(it.id, it.division)
-                )
-                electionsViewModel.onVoterInfoFragmentNavigated()
-            }
-        }
 
         electionsViewModel.elections.observe(viewLifecycleOwner) {
             it?.let {
                 adapter.submitList(it)
             }
         }
-        // TODO: Add ViewModel values and create ViewModel
 
-        // TODO: Add binding values
+        electionsViewModel.navigateTo.observe(viewLifecycleOwner) {
+            it?.let {
+                electionsViewModel.navigateCompleted()
+                findNavController().navigate(it)
+            }
+        }
 
-        // TODO: Link elections to voter info
-
-        // TODO: Initiate recycler adapters
-
-        // TODO: Populate recycler adapters
         return binding.root
     }
 

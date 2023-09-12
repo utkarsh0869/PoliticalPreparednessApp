@@ -4,7 +4,9 @@
     <string name="find_my_representatives">find my representatives</string>
     <string name="upcoming_elections">Upcoming Elections</string>
     <string name="saved_elections">Saved Elections</string>
-
-    <!-- TODO: Add necessary string values -->
+    <string name="permission_denied_explanation">You need to grant location permission in order to select the location.</string>
+    <string name="settings">Settings</string>
+    <string name="failed_to_get_address_from_location">failed to get address from location</string>
+    <string name="address">Address</string>
 
 </resources>
