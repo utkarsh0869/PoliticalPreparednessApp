@@ -32,18 +32,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_padding"
+            android:layout_marginBottom="16dp"
             app:layout_constraintTop_toBottomOf="@id/election_name"
             android:text="@{voterInfoViewModel.election.electionDay.toString()}" />
 
         <!-- TODO: Add visual styling and content -->
         <TextView
             android:id="@+id/state_header"
-            android:text="@{voterInfoViewModel.electionDetails.election.name}"
+            android:text="Election Information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/election_date"
             app:layout_constraintStart_toStartOf="@id/election_date"
-            />
+            android:textStyle="bold"
+            android:textSize="16sp"/>
 
         <!-- TODO: Add click binding to open web URL -->
         <!-- TODO: Add visual styling and content -->
@@ -55,7 +57,7 @@
             app:layout_constraintTop_toBottomOf="@id/state_header"
             app:layout_constraintStart_toStartOf="@id/election_date"
             android:onClick="@{() -> voterInfoViewModel.onOpenWebUrlClicked(voterInfoViewModel.electionDetails.state.get(0).electionAdministrationBody.votingLocationFinderUrl)}"
-            />
+            android:textColorLink="@color/gray50"/>
 
         <!-- TODO: Add click binding to open web URL -->
         <!-- TODO: Add visual styling and content -->
@@ -67,7 +69,7 @@
             app:layout_constraintTop_toBottomOf="@id/state_locations"
             app:layout_constraintStart_toStartOf="@id/election_date"
             android:onClick="@{() -> voterInfoViewModel.onOpenWebUrlClicked(voterInfoViewModel.electionDetails.state.get(0).electionAdministrationBody.ballotInfoUrl)}"
-            />
+            android:textColorLink="@color/gray50"/>
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/address_group"
@@ -93,7 +95,16 @@
             app:layout_constraintStart_toStartOf="@id/election_date"
             android:text="@{voterInfoViewModel.electionDetails.state.get(0).electionAdministrationBody.correspondenceAddress.toFormattedString()}"/>
 
-        <!-- TODO: Add button to save election to Room -->
+        <Button
+            android:id="@+id/voterActionButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textColor="@color/white"
+            android:backgroundTint="?colorPrimary"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
