@@ -16,7 +16,6 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.android.politicalpreparedness.BuildConfig
@@ -81,22 +80,6 @@ class VoterInfoFragment : Fragment() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
-        voterInfoViewModel.isFollowingLD.observe(viewLifecycleOwner) {
-//            val buttonText = if (it) "unfollow" else "follow"
-//            binding.voterActionButton.text = buttonText
-        }
-
-        // TODO: Populate voter info -- hide views without provided data.
-
-        /**
-        Hint: You will need to ensure proper data is provided from previous fragment.
-        */
-
-
-        // TODO: Handle loading of URLs
-
-        // TODO: Handle save button UI state
-        // TODO: cont'd Handle save button clicks
         return binding.root
     }
 
@@ -225,5 +208,4 @@ class VoterInfoFragment : Fragment() {
             }
     }
 
-    // TODO: Create method to load URL intents
 }
