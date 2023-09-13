@@ -29,4 +29,13 @@ interface ElectionDao {
 
     @Query("DELETE FROM election_table")
     suspend fun deleteAll()
+
+    @Query("UPDATE election_table SET followed = 1 WHERE id = :id")
+    suspend fun markAsFollowed(id: Int)
+
+    @Query("UPDATE election_table SET followed = 0 WHERE id = :id")
+    suspend fun markAsUnFollowed(id: Int)
+
+    @Query("SELECT * FROM election_table WHERE followed = 1")
+    fun getFollowedElections(): LiveData<List<Election>>
 }

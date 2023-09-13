@@ -32,11 +32,11 @@ class ElectionsViewModel(
         }
     }
 
-    val elections = electionsRepository.elections
+    private val elections = electionsRepository.elections
 
     val upcomingElections: LiveData<List<Election>> = elections
 
-    private lateinit var savedElection : LiveData<List<Election>>
+    val savedElections : LiveData<List<Election>> = electionsRepository.getFollowedElections()
 
     fun onUpcomingClicked(election: Election) {
         _navigateTo.value = ElectionsFragmentDirections

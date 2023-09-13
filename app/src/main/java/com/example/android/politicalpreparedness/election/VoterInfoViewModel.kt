@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Intent
 import android.location.Address
 import android.net.Uri
+import android.util.Log
+import android.widget.Button
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -26,13 +28,24 @@ class VoterInfoViewModel(
     private val electionsRepository = ElectionsRepository(database)
 
     private val _election = MutableLiveData<Election>()
-
     val election: LiveData<Election>
         get() = _election
+
+    private val _buttonText = MutableLiveData<String>()
+    val buttonText: LiveData<String>
+        get() = _buttonText
+
+    private val _isFollowingLD = MutableLiveData<Boolean>(false)
+    val isFollowingLD : LiveData<Boolean>
+        get() = _isFollowingLD
 
     init{
         viewModelScope.launch {
             _election.value = electionsRepository.getElectionById(electionId)
+
+            // Check if the election is followed and set buttonText accordingly
+            val isFollowed = _election.value!!.followed
+            _buttonText.value = if (isFollowed) "Unfollow" else "Follow"
         }
     }
 
@@ -60,11 +73,35 @@ class VoterInfoViewModel(
         }
     }
 
-    //TODO: Add var and methods to save and remove elections to local database
-    //TODO: cont'd -- Populate initial state of save button to reflect proper action based on election saved status
 
-    /**
-     * Hint: The saved state can be accomplished in multiple ways. It is directly related to how elections are saved/removed from the database.
-     */
+//    private var isFollowing = false
+//
+//    fun onFollowClicked() {
+//        isFollowing = !isFollowing
+//        viewModelScope.launch {
+//            if(isFollowing) {
+//                electionsRepository.markElectionAsFollowed(election.value!!.id)
+//                _buttonText.value = "Unfollow"
+//            } else {
+//                electionsRepository.markElectionAsUnFollowed(election.value!!.id)
+//                _buttonText.value = "Follow"
+//            }
+////            Log.d("VIFVM", "followed value before marking as followed ${election.value!!.followed}")
+//        }
+//    }
+
+    fun onFollowClicked() {
+        _isFollowingLD.value = !_isFollowingLD.value!!
+        viewModelScope.launch {
+            if(_isFollowingLD.value!!) {
+                electionsRepository.markElectionAsFollowed(election.value!!.id)
+                _buttonText.value = "Unfollow"
+            } else {
+                electionsRepository.markElectionAsUnFollowed(election.value!!.id)
+                _buttonText.value = "Follow"
+            }
+//            Log.d("VIFVM", "followed value before marking as followed ${election.value!!.followed}")
+        }
+    }
 
 }

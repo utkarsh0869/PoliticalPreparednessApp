@@ -48,9 +48,21 @@ class ElectionsFragment: Fragment() {
 
         binding.upcomingElectionsRV.adapter = adapter
 
-        electionsViewModel.elections.observe(viewLifecycleOwner) {
+        electionsViewModel.upcomingElections.observe(viewLifecycleOwner) {
             it?.let {
                 adapter.submitList(it)
+            }
+        }
+
+        val adapter2 = ElectionListAdapter(ElectionListener { election ->
+            electionsViewModel.onSavedClicked(election)
+        })
+
+        binding.savedElectionsRV.adapter = adapter2
+
+        electionsViewModel.savedElections.observe(viewLifecycleOwner) {
+            it?.let {
+                adapter2.submitList(it)
             }
         }
 

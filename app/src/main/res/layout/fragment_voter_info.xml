@@ -104,7 +104,8 @@
             app:layout_constraintRight_toRightOf="parent"
             android:textColor="@color/white"
             android:backgroundTint="?colorPrimary"
-            />
+            android:onClick="@{() -> voterInfoViewModel.onFollowClicked()}"
+            android:text="@{voterInfoViewModel.buttonText}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

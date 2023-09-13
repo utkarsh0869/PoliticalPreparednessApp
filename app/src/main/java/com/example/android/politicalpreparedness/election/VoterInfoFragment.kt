@@ -81,6 +81,11 @@ class VoterInfoFragment : Fragment() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
+        voterInfoViewModel.isFollowingLD.observe(viewLifecycleOwner) {
+//            val buttonText = if (it) "unfollow" else "follow"
+//            binding.voterActionButton.text = buttonText
+        }
+
         // TODO: Populate voter info -- hide views without provided data.
 
         /**

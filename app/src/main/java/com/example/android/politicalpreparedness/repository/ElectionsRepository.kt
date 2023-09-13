@@ -43,4 +43,17 @@ class ElectionsRepository(private val database: ElectionDatabase) {
     suspend fun getElectionDetails(id: Int, exactAddress: String): VoterInfoResponse {
         return CivicsApi.retrofitService.getVoterInfo(exactAddress, id)
     }
+
+    suspend fun markElectionAsFollowed(electionId: Int) {
+        database.electionDao.markAsFollowed(electionId)
+        Log.d("ER", "${database.electionDao.getElectionById(electionId)!!.followed}")
+    }
+
+    fun getFollowedElections(): LiveData<List<Election>> {
+        return database.electionDao.getFollowedElections()
+    }
+
+    suspend fun markElectionAsUnFollowed(electionId: Int) {
+        database.electionDao.markAsUnFollowed(electionId)
+    }
 }
