@@ -40,6 +40,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     //RecyclerView
     implementation "androidx.recyclerview:recyclerview:1.1.0"

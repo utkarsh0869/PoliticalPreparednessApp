@@ -47,13 +47,7 @@ class RepresentativeViewModel(application: Application): ViewModel() {
             }
         }
     }
-
-    //TODO: Create function get address from geo location
-
-    //TODO: Create function to get address from individual fields
-
-
-
+    
     fun toFormattedString(line1: String, line2: String, city: String, state: String, zip: String): String {
         var output = "$line1 "
         if (!line2.isNullOrEmpty()) output = output.plus(line2)

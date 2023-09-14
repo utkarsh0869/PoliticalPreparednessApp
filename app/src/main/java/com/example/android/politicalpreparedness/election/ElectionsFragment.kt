@@ -22,7 +22,7 @@ class ElectionsFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?)
-    : View? {
+            : View? {
 
         val binding: FragmentElectionBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_election, container, false)

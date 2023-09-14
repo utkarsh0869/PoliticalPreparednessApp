@@ -78,7 +78,6 @@ class DetailFragment : Fragment() {
                 binding.city.text.toString(),
                 binding.state.selectedItem.toString(),
                 binding.zip.text.toString())
-//            Timber.tag("RF").d(address + " + " + binding.zip.toString())
             representativeViewModel.findRepresentatives(address)
         }
 
@@ -91,8 +90,6 @@ class DetailFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
-
-        //TODO: Establish button listeners for field and location search
         return binding.root
     }
 

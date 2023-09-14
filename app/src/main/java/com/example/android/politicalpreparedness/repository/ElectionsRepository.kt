@@ -59,6 +59,6 @@ class ElectionsRepository(private val database: ElectionDatabase) {
     }
 
     suspend fun getRepresentativesInfo(address: String) : RepresentativeResponse {
-        return CivicsApi.retrofitService.getRepresentatives(address)
+        return CivicsApi.retrofitService.getRepresentatives(address.toString())
     }
 }
