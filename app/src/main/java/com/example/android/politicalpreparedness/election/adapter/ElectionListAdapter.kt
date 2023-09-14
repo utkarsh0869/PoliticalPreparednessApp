@@ -14,8 +14,6 @@ class ElectionListAdapter(private val clickListener: ElectionListener)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ElectionViewHolder {
         return ElectionViewHolder.from(parent)
     }
-
-    // TODO: Bind ViewHolder
     override fun onBindViewHolder(holder: ElectionViewHolder, position: Int) {
         holder.bind(getItem(position)!!, clickListener)
     }

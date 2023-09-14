@@ -6,6 +6,7 @@ import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Address
 import com.example.android.politicalpreparedness.network.models.Election
+import com.example.android.politicalpreparedness.network.models.RepresentativeResponse
 import com.example.android.politicalpreparedness.network.models.VoterInfoResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -55,5 +56,9 @@ class ElectionsRepository(private val database: ElectionDatabase) {
 
     suspend fun markElectionAsUnFollowed(electionId: Int) {
         database.electionDao.markAsUnFollowed(electionId)
+    }
+
+    suspend fun getRepresentativesInfo(address: Address) : RepresentativeResponse {
+        return CivicsApi.retrofitService.getRepresentatives(address.toString())
     }
 }

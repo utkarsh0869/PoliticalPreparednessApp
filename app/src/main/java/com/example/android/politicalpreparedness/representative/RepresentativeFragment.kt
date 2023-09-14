@@ -6,7 +6,12 @@ import android.location.Location
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import com.example.android.politicalpreparedness.R
+import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.network.models.Address
 import java.util.Locale
 
@@ -17,20 +22,30 @@ class DetailFragment : Fragment() {
     }
 
     //TODO: Declare ViewModel
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
 
-//    override fun onCreateView(inflater: LayoutInflater,
-//                              container: ViewGroup?,
-//                              savedInstanceState: Bundle?): View? {
-//
-//        //TODO: Establish bindings
-//
-//        //TODO: Define and assign Representative adapter
-//
-//        //TODO: Populate Representative adapter
-//
-//        //TODO: Establish button listeners for field and location search
-//
-//    }
+        val binding: FragmentRepresentativeBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_representative, container, false)
+
+        val application = requireNotNull(this.activity).application
+
+        val viewModelFactory = RepresentativeViewModelFactory(application)
+
+        val representativeViewModel = ViewModelProvider(
+            this, viewModelFactory)[RepresentativeViewModel::class.java]
+
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = representativeViewModel
+
+        //TODO: Define and assign Representative adapter
+
+        //TODO: Populate Representative adapter
+
+        //TODO: Establish button listeners for field and location search
+        return binding.root
+    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

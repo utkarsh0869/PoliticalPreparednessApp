@@ -43,8 +43,8 @@ interface CivicsApiService {
         @Query("electionId") electionId: Int,
     ): VoterInfoResponse
 
-//    @GET("representatives")
-//    suspend fun getRepresentatives(@Query("address", encoded = true) address: String,): RepresentativeResponse
+    @GET("representatives")
+    suspend fun getRepresentatives(@Query("address", encoded = true) address: String,): RepresentativeResponse
 }
 
 object CivicsApi {

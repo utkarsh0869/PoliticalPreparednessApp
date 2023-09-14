@@ -10,5 +10,10 @@
     <string name="address">Correspondence Address</string>
     <string name="follow">Follow</string>
     <string name="unfollow">Unfollow</string>
-
+    <string name="representative_search">Representative Search</string>
+    <string name="use_my_location">use my location</string>
+    <string name="my_representatives">My Representatives</string>
+    <string name="representative_fb">%s facebook page</string>
+    <string name="representative_twitter">%s twitted</string>
+    <string name="representative_www">%s web page</string>
 </resources>

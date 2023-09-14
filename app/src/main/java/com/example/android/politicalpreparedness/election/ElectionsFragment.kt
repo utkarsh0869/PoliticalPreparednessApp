@@ -18,8 +18,6 @@ import com.example.android.politicalpreparedness.network.models.Election
 
 class ElectionsFragment: Fragment() {
 
-    // TODO: Declare ViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
