@@ -28,6 +28,10 @@ class RepresentativeListAdapter(private val clickListener: RepresentativeListene
     override fun onBindViewHolder(holder: RepresentativeViewHolder, position: Int) {
         holder.bind(getItem(position)!!, clickListener)
     }
+
+    class RepresentativeListener(val clickListener: (representative: Representative) -> Unit) {
+        fun onClick(representative: Representative) = clickListener(representative)
+    }
 }
 
 class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {
@@ -42,7 +46,7 @@ class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {
 
 class RepresentativeViewHolder(val binding: ViewholderRepresentativeBinding): RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: Representative, clickListener: RepresentativeListener) {
+    fun bind(item: Representative, clickListener: RepresentativeListAdapter.RepresentativeListener) {
         binding.representative = item
         binding.representativePhoto.setImageResource(R.drawable.ic_profile)
         binding.listener = clickListener
@@ -63,10 +67,14 @@ class RepresentativeViewHolder(val binding: ViewholderRepresentativeBinding): Re
 
     private fun showSocialLinks(channels: List<Channel>) {
         val facebookUrl = getFacebookUrl(channels)
-        if (!facebookUrl.isNullOrBlank()) { enableLink(binding.facebookIcon, facebookUrl) }
+        if (!facebookUrl.isNullOrBlank()) {
+            enableLink(binding.facebookIcon, facebookUrl)
+        }
 
         val twitterUrl = getTwitterUrl(channels)
-        if (!twitterUrl.isNullOrBlank()) { enableLink(binding.twitterIcon, twitterUrl) }
+        if (!twitterUrl.isNullOrBlank()) {
+            enableLink(binding.twitterIcon, twitterUrl)
+        }
     }
 
     private fun showWWWLinks(urls: List<String>) {
@@ -75,14 +83,14 @@ class RepresentativeViewHolder(val binding: ViewholderRepresentativeBinding): Re
 
     private fun getFacebookUrl(channels: List<Channel>): String? {
         return channels.filter { channel -> channel.type == "Facebook" }
-                .map { channel -> "https://www.facebook.com/${channel.id}" }
-                .firstOrNull()
+            .map { channel -> "https://www.facebook.com/${channel.id}" }
+            .firstOrNull()
     }
 
     private fun getTwitterUrl(channels: List<Channel>): String? {
         return channels.filter { channel -> channel.type == "Twitter" }
-                .map { channel -> "https://www.twitter.com/${channel.id}" }
-                .firstOrNull()
+            .map { channel -> "https://www.twitter.com/${channel.id}" }
+            .firstOrNull()
     }
 
     private fun enableLink(view: ImageView, url: String) {
@@ -96,8 +104,4 @@ class RepresentativeViewHolder(val binding: ViewholderRepresentativeBinding): Re
         itemView.context.startActivity(intent)
     }
 
-}
-
-class RepresentativeListener(val clickListener: (representative: Representative) -> Unit) {
-    fun onClick(representative: Representative) = clickListener(representative)
 }

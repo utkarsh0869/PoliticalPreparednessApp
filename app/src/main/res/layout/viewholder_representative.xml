@@ -9,7 +9,7 @@
 
         <variable
             name="listener"
-            type="com.example.android.politicalpreparedness.representative.adapter.RepresentativeListener" />
+            type="com.example.android.politicalpreparedness.representative.adapter.RepresentativeListAdapter.RepresentativeListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

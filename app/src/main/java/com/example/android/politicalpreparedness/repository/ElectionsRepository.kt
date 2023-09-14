@@ -58,7 +58,7 @@ class ElectionsRepository(private val database: ElectionDatabase) {
         database.electionDao.markAsUnFollowed(electionId)
     }
 
-    suspend fun getRepresentativesInfo(address: Address) : RepresentativeResponse {
-        return CivicsApi.retrofitService.getRepresentatives(address.toString())
+    suspend fun getRepresentativesInfo(address: String) : RepresentativeResponse {
+        return CivicsApi.retrofitService.getRepresentatives(address)
     }
 }
