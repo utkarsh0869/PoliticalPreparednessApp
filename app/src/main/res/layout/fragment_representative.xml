@@ -13,7 +13,9 @@
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        app:layoutDescription="@xml/fragment_representative_scene">
+        app:layoutDescription="@xml/fragment_representative_scene"
+        android:minHeight="80dp"
+        app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
 
         <!-- TODO: Add visual styling and content -->
         <TextView
@@ -109,8 +111,6 @@
             android:text="@string/my_representatives"
             android:textStyle="bold"
             android:textSize="24sp"/>
-
-        <!-- TODO: Add Representatives RecyclerView -->
 
         <!-- TODO: Add visual styling and content -->
 <!--        <TextView-->

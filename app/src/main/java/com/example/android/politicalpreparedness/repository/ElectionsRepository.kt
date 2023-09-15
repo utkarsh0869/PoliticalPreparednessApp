@@ -29,11 +29,11 @@ class ElectionsRepository(private val database: ElectionDatabase) {
         withContext(Dispatchers.IO) {
             try {
                 val election = CivicsApi.retrofitService.getElections().elections
+                database.electionDao.deleteAll()
                 database.electionDao.insertAll(election)
             } catch (err : Exception) {
                 Log.e("ElectionsRepo", err.message.toString())
             }
-
         }
     }
 

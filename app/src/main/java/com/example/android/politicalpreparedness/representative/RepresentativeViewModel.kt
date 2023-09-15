@@ -47,7 +47,7 @@ class RepresentativeViewModel(application: Application): ViewModel() {
             }
         }
     }
-    
+
     fun toFormattedString(line1: String, line2: String, city: String, state: String, zip: String): String {
         var output = "$line1 "
         if (!line2.isNullOrEmpty()) output = output.plus(line2)
