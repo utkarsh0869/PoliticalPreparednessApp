@@ -6,17 +6,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.example.android.politicalpreparedness.database.ElectionDao
 import com.example.android.politicalpreparedness.database.ElectionDatabase.Companion.getInstance
-import com.example.android.politicalpreparedness.network.models.Division
 import com.example.android.politicalpreparedness.network.models.Election
 import com.example.android.politicalpreparedness.repository.ElectionsRepository
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class ElectionsViewModel(
-    val electionDao: ElectionDao,
     application: Application
 ): AndroidViewModel(application) {
 
@@ -51,5 +46,4 @@ class ElectionsViewModel(
     fun navigateCompleted() {
         _navigateTo.value = null
     }
-
 }

@@ -8,7 +8,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.android.politicalpreparedness.database.ElectionDao
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.repository.ElectionsRepository
 import kotlinx.coroutines.launch
@@ -17,7 +16,6 @@ import com.example.android.politicalpreparedness.network.models.VoterInfoRespons
 import kotlin.properties.Delegates
 
 class VoterInfoViewModel(
-    private val dataSource: ElectionDao,
     application: Application,
     electionId: Int,
 ) : AndroidViewModel(application) {
@@ -51,7 +49,7 @@ class VoterInfoViewModel(
 
     fun loadDetails(address: Address) {
         viewModelScope.launch {
-            val exactAddress = "${address?.getAddressLine(0)}"
+            val exactAddress = "${address.getAddressLine(0)}"
             val response = electionsRepository.getElectionDetails(election.value!!.id, exactAddress)
             _electionDetails.value = response
         }
@@ -63,7 +61,6 @@ class VoterInfoViewModel(
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             getApplication<Application>().startActivity(intent)
         } catch (e: Exception) {
-            // Handle any exceptions that may occur while opening the URL
             e.printStackTrace()
         }
     }

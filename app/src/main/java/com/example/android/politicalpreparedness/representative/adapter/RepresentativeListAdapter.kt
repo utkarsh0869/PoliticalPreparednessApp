@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.politicalpreparedness.R
-import com.example.android.politicalpreparedness.databinding.ViewholderElectionBinding
 import com.example.android.politicalpreparedness.databinding.ViewholderRepresentativeBinding
-import com.example.android.politicalpreparedness.election.adapter.ElectionViewHolder
-import com.example.android.politicalpreparedness.generated.callback.OnClickListener
 import com.example.android.politicalpreparedness.network.models.Channel
 import com.example.android.politicalpreparedness.representative.model.Representative
 
@@ -56,7 +53,6 @@ class RepresentativeViewHolder(val binding: ViewholderRepresentativeBinding): Re
         binding.executePendingBindings()
     }
 
-    //TODO: Add companion object to inflate ViewHolder (from)
     companion object {
         fun from(parent: ViewGroup): RepresentativeViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)

@@ -8,7 +8,7 @@
 
         <OnSwipe
             app:dragDirection="dragUp"
-            app:touchAnchorId="@id/representative_recycler"
+            app:touchAnchorId="@id/representativeRV"
             app:touchAnchorSide="top" />
 
     </Transition>
@@ -19,13 +19,13 @@
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@id/search_title"
+            android:id="@id/searchTitle"
             android:visibility="gone" />
         <Constraint
-            android:id="@id/address_line_1"
+            android:id="@id/addressLine1"
             android:visibility="gone" />
         <Constraint
-            android:id="@id/address_line_2"
+            android:id="@id/addressLine2"
             android:visibility="gone" />
         <Constraint
             android:id="@id/zip"
@@ -40,13 +40,13 @@
             android:id="@id/zip"
             android:visibility="gone" />
         <Constraint
-            android:id="@id/button_search"
+            android:id="@id/searchButton"
             android:visibility="gone" />
         <Constraint
-            android:id="@id/button_location"
+            android:id="@id/useMyLocationButton"
             android:visibility="gone" />
         <Constraint
-            android:id="@id/representative_title"
+            android:id="@id/representativeTitle"
             android:layout_width="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -10,13 +10,11 @@ import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.politicalpreparedness.BuildConfig
 import com.example.android.politicalpreparedness.R
@@ -26,10 +24,8 @@ import com.example.android.politicalpreparedness.representative.adapter.Represen
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
-import timber.log.Timber
 import java.util.Locale
 
-private const val REQUEST_TURN_DEVICE_LOCATION_ON = 29
 private const val REQUEST_FOREGROUND_AND_BACKGROUND_PERMISSION_RESULT_CODE = 33
 private const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
 private const val LOCATION_PERMISSION_INDEX = 0
@@ -62,7 +58,7 @@ class DetailFragment : Fragment() {
 
         binding.viewModel = representativeViewModel
 
-        binding.buttonLocation.setOnClickListener {
+        binding.useMyLocationButton.setOnClickListener {
             if(foregroundAndBackgroundLocationPermissionApproved()) {
                 getLocation()
             } else {
@@ -70,7 +66,7 @@ class DetailFragment : Fragment() {
             }
         }
 
-        binding.buttonSearch.setOnClickListener {
+        binding.searchButton.setOnClickListener {
             hideKeyboard()
             val address = representativeViewModel.toFormattedString(
                 binding.addressLine1.text.toString(),
@@ -83,7 +79,7 @@ class DetailFragment : Fragment() {
 
         val adapter = RepresentativeListAdapter(RepresentativeListAdapter.RepresentativeListener {})
 
-        binding.representativeRecycler.adapter = adapter
+        binding.representativeRV.adapter = adapter
 
         representativeViewModel.representatives.observe(viewLifecycleOwner) {
             it?.let {

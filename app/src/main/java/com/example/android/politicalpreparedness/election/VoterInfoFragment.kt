@@ -20,7 +20,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.android.politicalpreparedness.BuildConfig
 import com.example.android.politicalpreparedness.R
-import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -28,7 +27,6 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import java.util.Locale
 
-private const val REQUEST_TURN_DEVICE_LOCATION_ON = 29
 private const val REQUEST_FOREGROUND_AND_BACKGROUND_PERMISSION_RESULT_CODE = 33
 private const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
 private const val LOCATION_PERMISSION_INDEX = 0
@@ -48,20 +46,15 @@ class VoterInfoFragment : Fragment() {
         savedInstanceState: Bundle?)
     : View? {
 
-        // Retrieve the arguments
         val arguments = VoterInfoFragmentArgs.fromBundle(requireArguments())
         val electionId = arguments.argElectionId
-        val division = arguments.argDivision
 
         val binding: FragmentVoterInfoBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_voter_info, container, false)
 
-
         val application = requireNotNull(this.activity).application
 
-        val dataSource = ElectionDatabase.getInstance(application).electionDao
-
-        val viewModelFactory = VoterInfoViewModelFactory(dataSource, application, electionId)
+        val viewModelFactory = VoterInfoViewModelFactory(application, electionId)
 
         voterInfoViewModel =
             ViewModelProvider(this, viewModelFactory)[VoterInfoViewModel::class.java]
@@ -179,22 +172,13 @@ class VoterInfoFragment : Fragment() {
                             val addresses: MutableList<Address>? = geocoder.getFromLocation(
                                 location.latitude,
                                 location.longitude,
-                                1 // Maximum number of addresses to return (1 in this case).
+                                1
                             )
 
                             if (addresses!!.isNotEmpty()) {
                                 val address = addresses[0]
-                                val fullAddress =
-                                    address.getAddressLine(0) // Full address as a single string
-                                // You can access other address components like city, state, country, etc., using address methods.
-                                // Example: val city = address.locality
-                                // Example: val state = address.adminArea
-                                // Example: val country = address.countryName
                                 voterInfoViewModel.loadDetails(address)
-                                Log.d("VIF", fullAddress)
                             } else {
-                                // no address found
-                                Log.d("VIF", "here")
                             }
                         }
 
@@ -207,5 +191,4 @@ class VoterInfoFragment : Fragment() {
                 }
             }
     }
-
 }
