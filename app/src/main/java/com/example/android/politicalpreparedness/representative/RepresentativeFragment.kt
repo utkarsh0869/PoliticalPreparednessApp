@@ -89,9 +89,6 @@ class DetailFragment : Fragment() {
             }
         }
 
-//        representativeViewModel.addressLine1.observe(viewLifecycleOwner) {
-//            binding.addressLine1.setText(it)
-//        }
         return binding.root
     }
 

@@ -1,6 +1,7 @@
 package com.example.android.politicalpreparedness.representative
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -11,7 +12,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-class RepresentativeViewModel(application: Application, savedStateHandle: SavedStateHandle): ViewModel() {
+class RepresentativeViewModel(application: Application, private val savedStateHandle: SavedStateHandle): ViewModel() {
 
     private val database = ElectionDatabase.getInstance(application)
     private val electionsRepository = ElectionsRepository(database)
@@ -26,11 +27,11 @@ class RepresentativeViewModel(application: Application, savedStateHandle: SavedS
     val stateInput: MutableLiveData<String> = MutableLiveData()
 
     init {
-        savedStateHandle["addressLine1"] = addressLine1.value.toString()
-        savedStateHandle["addressLine2"] = addressLine2.value.toString()
-        savedStateHandle["city"] = cityInput.value.toString()
-        savedStateHandle["state"] = stateInput.value.toString()
-        savedStateHandle["zip"] = zipInput.value.toString()
+        addressLine1.value = savedStateHandle["addressLine1"]
+        addressLine2.value = savedStateHandle["addressLine2"]
+        cityInput.value = savedStateHandle["city"]
+        stateInput.value = savedStateHandle["state"]
+        zipInput.value = savedStateHandle["zip"]
     }
     /**
      *  The following code will prove helpful in constructing a representative from the API.
@@ -48,6 +49,11 @@ class RepresentativeViewModel(application: Application, savedStateHandle: SavedS
             try {
                 val (offices, officials) = electionsRepository.getRepresentativesInfo(address)
                 representatives.value = offices.flatMap { office -> office.getRepresentatives(officials) }
+                savedStateHandle["addressLine1"] = addressLine1.value.toString()
+                savedStateHandle["addressLine2"] = addressLine2.value.toString()
+                savedStateHandle["city"] = cityInput.value.toString()
+                savedStateHandle["state"] = stateInput.value.toString()
+                savedStateHandle["zip"] = zipInput.value.toString()
             } catch (e: HttpException) {
                 error.value = e.localizedMessage
             }
