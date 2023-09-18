@@ -2,6 +2,7 @@ package com.example.android.politicalpreparedness.representative
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.repository.ElectionsRepository
@@ -10,12 +11,14 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-class RepresentativeViewModel(application: Application): ViewModel() {
+class RepresentativeViewModel(application: Application, private val savedStateHandle: SavedStateHandle): ViewModel() {
 
     private val database = ElectionDatabase.getInstance(application)
     private val electionsRepository = ElectionsRepository(database)
     var state: MutableLiveData<String> = MutableLiveData()
-    var representatives: MutableLiveData<List<Representative>> = MutableLiveData()
+//    var representatives: MutableLiveData<List<Representative>> = MutableLiveData()
+    val representatives: MutableLiveData<List<Representative>> =
+        savedStateHandle.getLiveData("representatives")
     private var error: MutableLiveData<String> = MutableLiveData()
 
     /**
@@ -34,6 +37,7 @@ class RepresentativeViewModel(application: Application): ViewModel() {
             try {
                 val (offices, officials) = electionsRepository.getRepresentativesInfo(address)
                 representatives.value = offices.flatMap { office -> office.getRepresentatives(officials) }
+                savedStateHandle["representatives"] = representatives.value
             } catch (e: HttpException) {
                 error.value = e.localizedMessage
             }

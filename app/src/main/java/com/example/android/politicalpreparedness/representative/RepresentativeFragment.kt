@@ -33,6 +33,7 @@ private const val BACKGROUND_LOCATION_PERMISSION_INDEX = 1
 
 class DetailFragment : Fragment() {
 
+
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var binding: FragmentRepresentativeBinding
     private lateinit var representativeViewModel: RepresentativeViewModel
@@ -49,7 +50,7 @@ class DetailFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val viewModelFactory = RepresentativeViewModelFactory(application)
+        val viewModelFactory = RepresentativeViewModelFactory(application, requireActivity())
 
         representativeViewModel = ViewModelProvider(
             this, viewModelFactory)[RepresentativeViewModel::class.java]
