@@ -32,6 +32,7 @@ class RepresentativeViewModel(application: Application, private val savedStateHa
         cityInput.value = savedStateHandle["city"]
         stateInput.value = savedStateHandle["state"]
         zipInput.value = savedStateHandle["zip"]
+        representatives.value = savedStateHandle["representativeData"]
     }
     /**
      *  The following code will prove helpful in constructing a representative from the API.
@@ -54,6 +55,7 @@ class RepresentativeViewModel(application: Application, private val savedStateHa
                 savedStateHandle["city"] = cityInput.value.toString()
                 savedStateHandle["state"] = stateInput.value.toString()
                 savedStateHandle["zip"] = zipInput.value.toString()
+                savedStateHandle["representativeData"] = representatives.value
             } catch (e: HttpException) {
                 error.value = e.localizedMessage
             }
