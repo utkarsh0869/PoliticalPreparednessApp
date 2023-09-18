@@ -33,7 +33,8 @@
             android:autofillHints=""
             android:inputType="textPostalAddress"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchTitle" />
+            app:layout_constraintTop_toBottomOf="@id/searchTitle"
+            android:text="@={viewModel.addressLine1}"/>
 
         <EditText
             android:id="@+id/addressLine2"
@@ -42,7 +43,8 @@
             android:autofillHints=""
             android:inputType="textPostalAddress"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addressLine1" />
+            app:layout_constraintTop_toBottomOf="@id/addressLine1"
+            android:text="@={viewModel.addressLine2}"/>
 
         <EditText
             android:id="@+id/city"
@@ -52,7 +54,8 @@
             android:inputType="textPostalAddress"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/state"
-            app:layout_constraintTop_toBottomOf="@id/addressLine2" />
+            app:layout_constraintTop_toBottomOf="@id/addressLine2"
+            android:text="@={viewModel.cityInput}"/>
 
         <Spinner
             android:id="@+id/state"
@@ -65,7 +68,7 @@
             app:layout_constraintTop_toTopOf="@id/city"
             app:layout_constraintBottom_toBottomOf="@id/city"
             android:entries="@array/states"
-            stateValue="@{viewModel.state}"/>
+            stateValue="@{viewModel.stateInput}"/>
 
         <EditText
             android:id="@+id/zip"
@@ -76,7 +79,8 @@
             android:maxLength="5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@id/city"
-            app:layout_constraintTop_toBottomOf="@id/city" />
+            app:layout_constraintTop_toBottomOf="@id/city"
+            android:text="@={viewModel.zipInput}"/>
 
         <Button
             android:id="@+id/searchButton"

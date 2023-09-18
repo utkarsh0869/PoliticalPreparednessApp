@@ -11,16 +11,27 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-class RepresentativeViewModel(application: Application, private val savedStateHandle: SavedStateHandle): ViewModel() {
+class RepresentativeViewModel(application: Application, savedStateHandle: SavedStateHandle): ViewModel() {
 
     private val database = ElectionDatabase.getInstance(application)
     private val electionsRepository = ElectionsRepository(database)
-    var state: MutableLiveData<String> = MutableLiveData()
-//    var representatives: MutableLiveData<List<Representative>> = MutableLiveData()
-    val representatives: MutableLiveData<List<Representative>> =
-        savedStateHandle.getLiveData("representatives")
+//    var states: MutableLiveData<String> = MutableLiveData()
+    var representatives: MutableLiveData<List<Representative>> = MutableLiveData()
     private var error: MutableLiveData<String> = MutableLiveData()
 
+    val addressLine1: MutableLiveData<String> = MutableLiveData()
+    val addressLine2: MutableLiveData<String> = MutableLiveData()
+    val cityInput: MutableLiveData<String> = MutableLiveData()
+    val zipInput: MutableLiveData<String> = MutableLiveData()
+    val stateInput: MutableLiveData<String> = MutableLiveData()
+
+    init {
+        savedStateHandle["addressLine1"] = addressLine1.value.toString()
+        savedStateHandle["addressLine2"] = addressLine2.value.toString()
+        savedStateHandle["city"] = cityInput.value.toString()
+        savedStateHandle["state"] = stateInput.value.toString()
+        savedStateHandle["zip"] = zipInput.value.toString()
+    }
     /**
      *  The following code will prove helpful in constructing a representative from the API.
      *  This code combines the two nodes of the RepresentativeResponse into a single official :
@@ -37,7 +48,6 @@ class RepresentativeViewModel(application: Application, private val savedStateHa
             try {
                 val (offices, officials) = electionsRepository.getRepresentativesInfo(address)
                 representatives.value = offices.flatMap { office -> office.getRepresentatives(officials) }
-                savedStateHandle["representatives"] = representatives.value
             } catch (e: HttpException) {
                 error.value = e.localizedMessage
             }

@@ -50,7 +50,7 @@ class DetailFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val viewModelFactory = RepresentativeViewModelFactory(application, requireActivity())
+        val viewModelFactory = RepresentativeViewModelFactory(application, this)
 
         representativeViewModel = ViewModelProvider(
             this, viewModelFactory)[RepresentativeViewModel::class.java]
@@ -74,7 +74,8 @@ class DetailFragment : Fragment() {
                 binding.addressLine2.text.toString(),
                 binding.city.text.toString(),
                 binding.state.selectedItem.toString(),
-                binding.zip.text.toString())
+                binding.zip.text.toString()
+            )
             representativeViewModel.findRepresentatives(address)
         }
 
@@ -87,6 +88,10 @@ class DetailFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
+
+//        representativeViewModel.addressLine1.observe(viewLifecycleOwner) {
+//            binding.addressLine1.setText(it)
+//        }
         return binding.root
     }
 
@@ -182,7 +187,7 @@ class DetailFragment : Fragment() {
                     binding.addressLine2.setText(address.line2)
                     binding.city.setText(address.city)
                     binding.zip.setText(address.zip)
-                    representativeViewModel.state.value = address.state
+                    representativeViewModel.stateInput.value = address.state
                 }
 
         }
