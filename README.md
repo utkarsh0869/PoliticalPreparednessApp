@@ -20,3 +20,6 @@ It leverages the following components from the Jetpack library:
 ## Video Demo and Screenshots
 
 [![Political Preparedness Android Application](https://i.ytimg.com/vi/aTo7uIUB7UQ/maxresdefault.jpg)](https://youtu.be/aTo7uIUB7UQ?si=4y0PSMUpOYZDYLqw "Political Preparedness Android Application")
+
+![Screenshot_20230919-100342.png](..%2F..%2F..%2F..%2FDownloads%2FScreenshot_20230919-100342.png)
+
