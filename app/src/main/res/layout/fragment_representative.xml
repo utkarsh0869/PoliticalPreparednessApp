@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/representative_search"
-            android:textSize="24sp"
+            android:textSize="@dimen/text_size"
             android:textStyle="bold"/>
 
         <EditText
@@ -104,7 +104,7 @@
             app:layout_constraintTop_toBottomOf="@id/useMyLocationButton"
             android:text="@string/my_representatives"
             android:textStyle="bold"
-            android:textSize="24sp"/>
+            android:textSize="@dimen/text_size"/>
 
         <!-- TODO: Add visual styling and content -->
 <!--        <TextView-->
