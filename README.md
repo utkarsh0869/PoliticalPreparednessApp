@@ -21,5 +21,14 @@ It leverages the following components from the Jetpack library:
 
 [![Political Preparedness Android Application](https://i.ytimg.com/vi/aTo7uIUB7UQ/maxresdefault.jpg)](https://youtu.be/aTo7uIUB7UQ?si=4y0PSMUpOYZDYLqw "Political Preparedness Android Application")
 
-![Screenshot_20230919-100342.png](..%2F..%2F..%2F..%2FDownloads%2FScreenshot_20230919-100342.png)
+![Screenshot_20230919-100342](https://github.com/utkarsh0869/PoliticalPreparednessApp/assets/44482062/2401fc37-7a67-4ce3-b85a-b51091f4b311)
 
+![Screenshot_20230919-100233](https://github.com/utkarsh0869/PoliticalPreparednessApp/assets/44482062/e13e1cbc-f8e7-4790-a314-631d89d7ffb3)
+
+![Screenshot_20230919-100239](https://github.com/utkarsh0869/PoliticalPreparednessApp/assets/44482062/e7d9fd84-ff6b-4c21-9874-019cf97a866b)
+
+![Screenshot_20230919-100245](https://github.com/utkarsh0869/PoliticalPreparednessApp/assets/44482062/3c2d834b-ee19-41e0-b0cc-48a8fecca11f)
+
+![Screenshot_20230919-100309](https://github.com/utkarsh0869/PoliticalPreparednessApp/assets/44482062/b258e67c-abfc-46fe-8b67-468be7c00dbc)
+
+![Screenshot_20230919-100352](https://github.com/utkarsh0869/PoliticalPreparednessApp/assets/44482062/ce5b7bc3-97d2-486c-aeb8-5c6f0d874242)
