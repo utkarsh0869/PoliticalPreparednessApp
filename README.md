@@ -17,9 +17,11 @@ It leverages the following components from the Jetpack library:
 * [Data Binding](https://developer.android.com/topic/libraries/data-binding/) with binding adapters
 * [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/) with the SafeArgs plugin for parameter passing between fragments
 
-## Video Demo and Screenshots
+## Video Demo
 
 [![Political Preparedness Android Application](https://i.ytimg.com/vi/aTo7uIUB7UQ/maxresdefault.jpg)](https://youtu.be/aTo7uIUB7UQ?si=4y0PSMUpOYZDYLqw "Political Preparedness Android Application")
+
+# Screenshots
 
 <img src="https://github.com/utkarsh0869/PoliticalPreparednessApp/assets/44482062/2401fc37-7a67-4ce3-b85a-b51091f4b311" alt="Image Title" width="360">
 
