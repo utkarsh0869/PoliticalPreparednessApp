@@ -21,7 +21,7 @@ It leverages the following components from the Jetpack library:
 
 [![Political Preparedness Android Application](https://i.ytimg.com/vi/aTo7uIUB7UQ/maxresdefault.jpg)](https://youtu.be/aTo7uIUB7UQ?si=4y0PSMUpOYZDYLqw "Political Preparedness Android Application")
 
-![Screenshot_20230919-100342](https://github.com/utkarsh0869/PoliticalPreparednessApp/assets/44482062/2401fc37-7a67-4ce3-b85a-b51091f4b311)
+<img src="https://github.com/utkarsh0869/PoliticalPreparednessApp/assets/44482062/2401fc37-7a67-4ce3-b85a-b51091f4b311" alt="Image Title" width="360">
 
 ![Screenshot_20230919-100233](https://github.com/utkarsh0869/PoliticalPreparednessApp/assets/44482062/e13e1cbc-f8e7-4790-a314-631d89d7ffb3)
 
